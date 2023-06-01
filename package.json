@@ -2,9 +2,9 @@
   "name": "tambola-ticket-create-api",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "test": "nodem server.js"
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
