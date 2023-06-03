@@ -1,3 +1,5 @@
+const { findTickets } = require("../services/ticketService");
+
 let tokenArray = [];
 let ZeroIndexArray = [];
 
@@ -15,7 +17,6 @@ const zeroIndexArrayInput = () => {
     }),
   ];
 };
-zeroIndexArrayInput();
 
 const randomzeroIndex = () => {
   const array = Array.from({ length: 4 }, () => {
@@ -30,7 +31,7 @@ const randomzeroIndex = () => {
 
 const singleArray = () => {
   const ZeroArray = [...randomzeroIndex()];
-  console.log(ZeroArray);
+  // console.log(ZeroArray);
   let zeroIndex = 0;
   const array = Array.from({ length: 9 }, (_, index) => {
     if (ZeroArray[zeroIndex] === index) {
@@ -47,17 +48,20 @@ const singleArray = () => {
   return array;
 };
 
-const generateTicket = () => {
-  tokenArray.push(singleArray());
-  tokenArray.push(singleArray());
-  tokenArray.push(singleArray());
+const generateUniqueTicket = async () => {
+  zeroIndexArrayInput();
+  console.log(ZeroIndexArray);
+  tokenArray = [singleArray(), singleArray(), singleArray()];
+  let find = await findTickets({ token: tokenArray });
+  while (find.length) {
+    console.log("true");
+    let randomNumber = Math.floor(Math.random() * 3);
+    tokenArray.splice(randomNumber, 1, singleArray());
+    find = await findTickets({ token: tokenArray });
+  }
+  console.log(ZeroIndexArray);
   console.log(tokenArray);
-
   return tokenArray;
-};
-
-const generateUniqueTicket = () => {
-  return generateTicket();
 };
 
 module.exports = generateUniqueTicket;

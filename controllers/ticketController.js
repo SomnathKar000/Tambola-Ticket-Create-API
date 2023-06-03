@@ -1,13 +1,20 @@
 const generateUniqueTicket = require("../utils/uniqueTicket");
 const customError = require("../error/customError");
-const { findTickets } = require("../services/ticketService");
+const { findTickets, createTicketDB } = require("../services/ticketService");
 
-const createTicket = (req, res) => {
-  generateUniqueTicket();
-  res.status(200).json({
-    success: true,
-    message: "Token created",
-  });
+const createTicket = async (req, res) => {
+  try {
+    const ticket = await generateUniqueTicket();
+    console.log(ticket);
+    const data = await createTicketDB({ ticket, userId: req.user.userId });
+    res.status(200).json({
+      success: true,
+      message: "Token created",
+      ticket,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const findTokenById = async (req, res) => {

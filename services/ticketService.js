@@ -6,4 +6,9 @@ const findTickets = (object) => {
   return tickets;
 };
 
-module.exports = { findTickets };
+const createTicketDB = (object) => {
+  const ticket = Ticket.create(object);
+  return ticket;
+};
+
+module.exports = { findTickets, createTicketDB };

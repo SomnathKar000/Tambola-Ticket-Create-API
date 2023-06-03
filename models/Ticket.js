@@ -6,9 +6,8 @@ const ticketSchema = new mongoose.Schema({
     required: true,
   },
   ticket: {
-    type: String,
+    type: [[Number]],
     require: true,
-    unique: true,
   },
   date: {
     type: Date,
