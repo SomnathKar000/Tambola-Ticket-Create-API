@@ -5,20 +5,35 @@ const getNumber = (totalnumber) => {
   const number = Math.floor(Math.random() * totalnumber);
   return number;
 };
+const zeroIndexArrayInput = () => {
+  ZeroIndexArray = [
+    ...Array.from({ length: 8 }, (_, i) => {
+      return i;
+    }),
+    ...Array.from({ length: 8 }, (_, i) => {
+      return i;
+    }),
+  ];
+};
+zeroIndexArrayInput();
 
 const randomzeroIndex = () => {
   const array = Array.from({ length: 4 }, () => {
-    let number = getNumber(9);
+    let numberIndex = getNumber(ZeroIndexArray.length);
+    let number = ZeroIndexArray[numberIndex];
+
+    ZeroIndexArray.splice(numberIndex, 1);
     return number;
   }).sort();
   return array;
 };
 
 const singleArray = () => {
-  ZeroIndexArray.push(randomzeroIndex());
+  const ZeroArray = [...randomzeroIndex()];
+  console.log(ZeroArray);
   let zeroIndex = 0;
   const array = Array.from({ length: 9 }, (_, index) => {
-    if (ZeroIndexArray[ZeroIndexArray.length - 1][zeroIndex] === index) {
+    if (ZeroArray[zeroIndex] === index) {
       zeroIndex++;
       return 0;
     }
@@ -37,7 +52,6 @@ const generateTicket = () => {
   tokenArray.push(singleArray());
   tokenArray.push(singleArray());
   console.log(tokenArray);
-  console.log(ZeroIndexArray);
 
   return tokenArray;
 };
