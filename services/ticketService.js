@@ -11,4 +11,10 @@ const createTicketDB = (object) => {
   return ticket;
 };
 
-module.exports = { findTickets, createTicketDB };
+const ConvertIntoTicketArray = (array) => {
+  let result = [];
+  array.forEach(({ ticket }) => result.push(ticket));
+  return result;
+};
+
+module.exports = { findTickets, createTicketDB, ConvertIntoTicketArray };
