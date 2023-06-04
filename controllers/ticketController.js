@@ -9,11 +9,10 @@ const {
 const createTicket = async (req, res) => {
   try {
     const ticket = await generateUniqueTicket();
-    console.log(ticket);
-    const data = await createTicketDB({ ticket, userId: req.user.userId });
+    await createTicketDB({ ticket, userId: req.user.userId });
     res.status(200).json({
       success: true,
-      message: "Token created",
+      message: "Ticket created",
       ticket,
     });
   } catch (error) {
