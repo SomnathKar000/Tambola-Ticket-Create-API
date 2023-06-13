@@ -1,6 +1,6 @@
 # Tambola-Ticket-Create-API Project
 
-This is a description of my project.
+The Tambola Ticket Create API is a project developed by the user that allows users to create and fetch Tambola tickets. Tambola, also known as Bingo or Housie, is a popular numbers game.
 
 ## Installation
 
